@@ -6,7 +6,7 @@ Trịnh Bảo Quân - 3119410335
 1.Github cá nhân :https://github.com/quandavi/quanbao.github.io 
 
 2. CV: https://quandavi.github.io/quanbao.github.io/
-3. 
+
 3.Email: ilovekingand@gmail.com
 
 Nguyễn Nhựt Hào - 3122410097
