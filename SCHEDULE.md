@@ -1,5 +1,5 @@
-Phân loại cảm xúc trong văn bản sử dụng Machine Learning 
-Thông tin của các thành viên tham gia: 
+# Phân loại cảm xúc trong văn bản sử dụng Machine Learning 
+## Thông tin của các thành viên tham gia: 
 
 Trịnh Bảo Quân - 3119410335 
 
@@ -25,7 +25,7 @@ Ngô Khánh Tâm - 3122410370
 
 3.Email: khanhtam08022004@gmail.com
 
-Phân công: 
+## Phân công: 
 
 Tuần đầu :
 
@@ -36,7 +36,7 @@ Trịnh Bảo Quân  : Tìm hiểu về cách lập trình ra ứng dụng
 Ngô Khánh Tâm : tìm dataset để training AI sau khi lập trình 
 
 
-Kế hoạch dự kiến
+## Kế hoạch dự kiến
 Nội dung	                                          Thời gian thực hiện
 1. Nghiên cứu tài liệu liên quan:	                              1 tuần
 2. Thu thập và xử lý dữ liệu:	                                  2 tuần
