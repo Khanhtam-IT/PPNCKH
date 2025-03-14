@@ -2,19 +2,19 @@ Phân loại cảm xúc trong văn bản sử dụng Machine Learning
 Thông tin của các thành viên tham gia: 
 
 Trịnh Bảo Quân - 3119410335 
-Github cá nhân :https://github.com/quandavi/quanbao.github.io 
-CV: https://quandavi.github.io/quanbao.github.io/ 
-Email: ilovekingand@gmail.com
+1.Github cá nhân :https://github.com/quandavi/quanbao.github.io 
+2. CV: https://quandavi.github.io/quanbao.github.io/ 
+3.Email: ilovekingand@gmail.com
 
 Nguyễn Nhựt Hào - 3122410097
-Github cá nhân: https://github.com/LuxannaDC/nhuthao2307.github.io
-CV: https://luxannadc.github.io/nhuthao2307.github.io/
-Email: nguyenhao230704@gmail.com
+1.Github cá nhân: https://github.com/LuxannaDC/nhuthao2307.github.io
+2.CV: https://luxannadc.github.io/nhuthao2307.github.io/
+3.Email: nguyenhao230704@gmail.com
 
 Ngô Khánh Tâm - 3122410370
-Github cá nhân: https://github.com/Khanhtam-IT
-CV: https://khanhtam-it.github.io/
-Email: khanhtam08022004@gmail.com
+1.Github cá nhân: https://github.com/Khanhtam-IT
+2.CV: https://khanhtam-it.github.io/
+3.Email: khanhtam08022004@gmail.com
 
 Phân công: 
 
