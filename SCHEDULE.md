@@ -18,8 +18,11 @@ Email: khanhtam08022004@gmail.com
 
 Phân công: 
 Tuần đầu :
+
 Nguyễn Nhựt Hào : tìm thông tin cơ bản về đề tài 
+
 Trịnh Bảo Quân  : Tìm hiểu về cách lập trình ra ứng dụng 
+
 Ngô Khánh Tâm : tìm dataset để training AI sau khi lập trình 
 
 
