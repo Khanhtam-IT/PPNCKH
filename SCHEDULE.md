@@ -17,6 +17,7 @@ CV: https://khanhtam-it.github.io/
 Email: khanhtam08022004@gmail.com
 
 Phân công: 
+
 Tuần đầu :
 
 Nguyễn Nhựt Hào : tìm thông tin cơ bản về đề tài 
