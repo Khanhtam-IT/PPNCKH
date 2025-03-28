@@ -35,7 +35,13 @@ Trịnh Bảo Quân  : Tìm hiểu về cách lập trình ra ứng dụng
 
 Ngô Khánh Tâm : tìm dataset để training AI sau khi lập trình 
 
+Tuần thứ 8 trở đi:
 
+Trịnh Bảo Quân  :  Tìm code và hướng phát triển
+
+Nguyễn Nhựt Hào : Viết báo cáo 
+
+Ngô Khánh Tâm : Tìm data set
 ## Kế hoạch dự kiến
 Nội dung	                                          Thời gian thực hiện
 1. Nghiên cứu tài liệu liên quan:	                              1 tuần
