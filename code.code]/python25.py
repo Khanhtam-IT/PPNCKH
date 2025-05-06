@@ -1,110 +1,65 @@
-import tkinter as tk
-from tkinter import filedialog, messagebox
-from PIL import Image, ImageTk
+import sys
+import cv2
+import pytesseract
+from nltk.sentiment import SentimentIntensityAnalyzer
+from PyQt5 import QtWidgets, QtGui, uic, QtCore
 
-class EmotionAIApp:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("AI Nhận Diện Cảm Xúc")
-        self.root.geometry("400x400")
-        self.create_main_interface()
+class MainWindow(QtWidgets.QMainWindow):
+    def __init__(self):
+        super(MainWindow, self).__init__()
+        uic.loadUi('gui1.ui', self)
 
-    def create_main_interface(self):
-        self.clear_window()
-        tk.Label(self.root, text="Chào bạn!", font=("Arial", 18)).pack(pady=10)
+        # Kết nối các nút bấm
+        self.Quet_button.clicked.connect(self.extract_and_analyze)
+        self.Huy_button.clicked.connect(self.close)
+        self.taianh_button.clicked.connect(self.load_image)
+        self.lammoi_button.clicked.connect(self.clear_tables)
+        self.return_button.clicked.connect(self.close)
 
-        # Nút phân tích từ ảnh
-        btn_image = tk.Button(self.root, text="Phân tích từ ảnh", command=self.create_image_analysis)
-        btn_image.pack(pady=10)
+        # Khởi tạo biến để lưu đường dẫn ảnh
+        self.image_path = ""
 
-        # Nút phân tích từ internet
-        btn_internet = tk.Button(self.root, text="Internet", command=self.create_internet_analysis)
-        btn_internet.pack(pady=10)
+    def analyze_sentiment(self, text):
+        sia = SentimentIntensityAnalyzer()
+        sentiment = sia.polarity_scores(text)
+        return sentiment
 
-    def create_image_analysis(self):
-        self.clear_window()
+    def extract_text_from_image(self, image_path):
+        img = cv2.imread(image_path)
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        text = pytesseract.image_to_string(gray)
+        return text
 
-        # Khung tải ảnh
-        self.frame_image = tk.Frame(self.root, width=400, height=200)
-        self.frame_image.pack(pady=10)
+    def extract_and_analyze(self):
+        if self.image_path:
+            text = self.extract_text_from_image(self.image_path)
+            self.anh_tableWidget.setItem(0, 0, QtWidgets.QTableWidgetItem(text))
 
-        tk.Label(self.frame_image, text="Tải ảnh lên:").pack(pady=5)
-        self.upload_button = tk.Button(self.frame_image, text="Chọn ảnh", command=self.upload_image)
-        self.upload_button.pack(pady=5)
+            sentiment = self.analyze_sentiment(text)
+            self.vanban_tableWidget.setItem(0, 0, QtWidgets.QTableWidgetItem(str(sentiment)))
+        else:
+            QtWidgets.QMessageBox.warning(self, "Warning", "Please load an image first.")
 
-        # Khung phân tích
-        self.frame_analysis = tk.Frame(self.root, width=400, height=200)
-        self.frame_analysis.pack(pady=10)
-
-        self.analyze_button = tk.Button(self.frame_analysis, text="Phân tích", command=self.analyze_image)
-        self.analyze_button.pack(pady=5)
-
-        # Nút quay lại
-        btn_back = tk.Button(self.root, text="Quay lại", command=self.create_main_interface)
-        btn_back.pack(pady=10)
-
-        # Khung hiển thị cảm xúc
-        self.frame_result = tk.Frame(self.root)
-        self.frame_result.pack(pady=10)
-
-        self.result_label = tk.Label(self.frame_result, text="Cảm xúc phân tích: ")
-        self.result_label.pack(pady=5)
-
-    def create_internet_analysis(self):
-        self.clear_window()
-
-        # Khung chọn mạng xã hội
-        self.frame_social = tk.Frame(self.root, width=400, height=200)
-        self.frame_social.pack(pady=10)
-
-        tk.Label(self.frame_social, text="Chọn mạng xã hội:").pack(pady=5)
-
-        btn_fb = tk.Button(self.frame_social, text="Facebook", command=lambda: self.fetch_comments("Facebook"))
-        btn_fb.pack(pady=5)
-
-        btn_tiki = tk.Button(self.frame_social, text="Tiki", command=lambda: self.fetch_comments("Tiki"))
-        btn_tiki.pack(pady=5)
-
-        btn_sendo = tk.Button(self.frame_social, text="Sen Đỏ", command=lambda: self.fetch_comments("Sen Đỏ"))
-        btn_sendo.pack(pady=5)
-
-        # Khung phân tích
-        self.frame_analysis = tk.Frame(self.root, width=400, height=200)
-        self.frame_analysis.pack(pady=10)
-
-        self.analyze_button = tk.Button(self.frame_analysis, text="Phân tích", command=self.analyze_internet)
-        self.analyze_button.pack(pady=5)
-
-        # Nút quay lại
-        btn_back = tk.Button(self.root, text="Quay lại", command=self.create_main_interface)
-        btn_back.pack(pady=10)
-
-        # Khung hiển thị cảm xúc
-        self.frame_result = tk.Frame(self.root)
-        self.frame_result.pack(pady=10)
-
-        self.result_label = tk.Label(self.frame_result, text="Cảm xúc phân tích: ")
-        self.result_label.pack(pady=5)
-
-    def upload_image(self):
-        file_path = filedialog.askopenfilename(filetypes=[("Image Files", "*.jpg;*.jpeg;*.png")])
+    def load_image(self):
+        file_path, _ = QtWidgets.QFileDialog.getOpenFileName(self, "Chọn tệp tin", "", "Images (*.png *.xpm *.jpg);;All Files (*)")
         if file_path:
-            self.result_label.config(text="Ảnh đã tải lên!")
+            print("Tệp đã chọn:", file_path)
+        pixmap = QtGui.QPixmap(file_path)  # Sử dụng QtGui.QPixmap
+        # Hiển thị ảnh trong bảng
+        self.anh_tableWidget.setRowCount(1)
+        self.anh_tableWidget.setColumnCount(1)
+        self.anh_tableWidget.setItem(0, 0, QtWidgets.QTableWidgetItem())
+        self.anh_tableWidget.item(0, 0).setIcon(QtGui.QIcon(pixmap))
+        self.anh_tableWidget.setRowHeight(0, 300)
+        self.anh_tableWidget.setColumnWidth(0, 300)
+        QtWidgets.QMessageBox.information(self, "Image Loaded", "Image loaded successfully!")
+    def clear_tables(self):
+        self.anh_tableWidget.clearContents()
+        self.vanban_tableWidget.clearContents()
+        self.label_hienanh.clear()  # Nếu bạn đã thêm label hiển thị ảnh
 
-    def fetch_comments(self, platform):
-        self.result_label.config(text=f"Bình luận từ {platform}: 'Tuyệt vời!'")
-
-    def analyze_image(self):
-        self.result_label.config(text="Cảm xúc phân tích: Vui vẻ")
-
-    def analyze_internet(self):
-        self.result_label.config(text="Cảm xúc phân tích: Hài lòng")
-
-    def clear_window(self):
-        for widget in self.root.winfo_children():
-            widget.destroy()
-
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = EmotionAIApp(root)
-    root.mainloop()
+if __name__ == '__main__':
+    app = QtWidgets.QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec_())
