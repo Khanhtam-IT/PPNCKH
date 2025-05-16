@@ -89,7 +89,7 @@ suicide_avoider(x)
 ---
 
 **Tác giả:**  
-- Team Name: _(Điền tên nhóm nghiên cứu của bạn)_  
-- Affiliation: _(Điền trường/lab của bạn)_  
+- Team Name: _(nhóm 12)_  
+- Affiliation: _(SGU_CNTT)_  
 
 ---
